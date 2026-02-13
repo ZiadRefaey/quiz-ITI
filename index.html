@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <form action="">
+        <h2>Sign up </h2>
+        <h4>to start the quiz</h4>
+        <label for="userName">Full name</label>
+        <input type="text" placeholder="enter your name" name="userName" id="userName">
+        <span id="nameErr"></span>
+        <label for="email">E-mail</label>
+        <input type="text" placeholder="enter your e-mail" name="email" id="email">
+        <span id="emailErr"></span>
+        <label for="pass">password :</label>
+        <div class="pass">
+            <input type="password" placeholder="enter a password" name="pass" id="pass">
+            <i id="passLock" class="fa-solid fa-lock"></i>
+        </div>
+        <span id="passErr"></span>
+        <label for="rePass">Confirm password</label>
+        <div class="pass">
+            <input type="password" placeholder="confirm your password" name="rePass" id="rePass">
+            <i id="rePassLock" class="fa-solid fa-lock"></i>
+        </div>
+        <span id="rePassErr"></span>
+        <button>Sign up</button>
+        <p>Have an account ? <a href="login.html">Sing in</a></p>
+    </form>
+
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
