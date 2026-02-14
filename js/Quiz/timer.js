@@ -1,7 +1,7 @@
 import Timer from "./TimerClass.js";
 const timerDOM = document.querySelector(".timer");
 export default function initTimer() {
-  const timer = new Timer(1000, onTick, onFinish);
+  const timer = new Timer(120, onTick, onFinish);
   function convertToMinutes(timer) {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;

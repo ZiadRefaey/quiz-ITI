@@ -13,7 +13,6 @@ function renderQuestions() {
   currentIndexDOM.textContent = quiz.currentIndex + 1;
   const currentQuestion = quiz.questions[quiz.currentIndex];
   const questionTitle = currentQuestion.title;
-  console.log(currentQuestion);
   const questionOptions = currentQuestion.options;
   questionTitleDOM.textContent = questionTitle;
   questionOptions.forEach((option, index) => {
@@ -53,12 +52,10 @@ function handleNext() {
   quiz.nextQuestion();
   checkBtns();
   renderQuestions();
-  console.log(quiz);
 }
 function handlePrev() {
   quiz.prevQuestion();
   checkBtns();
   renderQuestions();
-  console.log(quiz);
 }
 export default initQuiz;

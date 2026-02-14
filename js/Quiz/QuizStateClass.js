@@ -20,10 +20,3 @@ export default class QuizState {
     this.currentIndex--;
   }
 }
-//  id: 48,
-//     question: "Jack in Titanic?",
-//     answers: ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Tom Cruise"],
-//     correct: 1,
-//     category: "Movies",
-//     isMarked: false,
-//     userAnswer: null,
