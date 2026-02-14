@@ -1,25 +1,17 @@
-export default class Timer {
-  constructor(duration, onTick, onFinish) {
-    this.duration = duration;
-    this.remaining = duration;
-    this.interval = null;
-    this.onTick = onTick;
-    this.onFinish = onFinish;
+import Timer from "./TimerClass.js";
+const timerDOM = document.querySelector(".timer");
+export default function initTimer() {
+  const timer = new Timer(1000, onTick, onFinish);
+  function convertToMinutes(timer) {
+    const minutes = Math.floor(timer / 60);
+    const seconds = timer % 60;
+    return [minutes, seconds];
   }
-
-  start() {
-    this.interval = setInterval(() => {
-      this.remaining--;
-      this.onTick(this.remaining);
-
-      if (this.remaining <= 0) {
-        clearInterval(this.interval);
-        this.onFinish();
-      }
-    }, 1000);
+  function onFinish() {
+    alert("timer is up");
   }
-
-  stop() {
-    clearInterval(this.interval);
+  function onTick(remaining) {
+    timerDOM.textContent = convertToMinutes(remaining).join(":");
   }
+  timer.start();
 }
