@@ -127,3 +127,6 @@ button:hover:not([disabled]) {
 button:disabled {
   cursor: not-allowed;
 }
+.selected-option {
+  background-color: green;
+}
