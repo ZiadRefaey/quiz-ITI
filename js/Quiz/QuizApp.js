@@ -43,17 +43,21 @@ function initQuiz() {
 
 //responsible for handling how the previous and next buttons are disabled and enabled
 function checkBtns() {
+  console.log(quiz.currentIndex);
   if (quiz.currentIndex === quiz.questions.length - 1) {
-    nextBtn.setAttribute("disabled", "");
+    prevBtn.disabled = false;
+    nextBtn.disabled = true;
   }
 
   if (quiz.currentIndex === 0) {
+    nextBtn.disabled = false;
     prevBtn.disabled = true;
   }
   if (
     quiz.currentIndex !== quiz.questions.length - 1 &&
     quiz.currentIndex !== 0
   ) {
+    console.log("here");
     nextBtn.disabled = false;
     prevBtn.disabled = false;
   }
@@ -93,16 +97,33 @@ function handleMark() {
   });
   renderMarkedQuestions();
 }
+
 function renderMarkedQuestions() {
-  markedList.replaceChildren();
-  markedQuestionsList.forEach((question) => {
+  markedQuestionsList.forEach((question, index) => {
     const markedQuestion = document.createElement("div");
     markedQuestion.classList.add("marked-question-item");
     markedQuestion.classList.add("aside-item");
+    markedQuestion.dataset.id = question.id;
     markedQuestion.textContent = `#${question.id}`;
     console.log(question);
-    markedList.replaceChildren(markedQuestion);
+    // markedQuestion.textContent = `#${question.}`
+    if (index === 0) {
+      markedList.replaceChildren(markedQuestion);
+    } else {
+      markedList.appendChild(markedQuestion);
+    }
   });
+}
+markedList.addEventListener("click", function (e) {
+  if (e.target.dataset.id) {
+    navigateToQuestion(e.target.dataset.id);
+  }
+});
+function navigateToQuestion(id) {
+  console.log(id);
+  quiz.currentIndex = Number(id - 1);
+  renderQuestions();
+  checkBtns();
 }
 function pickOption(questionId, optionIndex) {
   const currentQuestion = quiz.questions[questionId];
