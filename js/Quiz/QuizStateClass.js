@@ -11,6 +11,7 @@ export default class QuizState {
           question.correct,
         ),
     );
+    this.totalScore = null;
     this.currentIndex = 0;
   }
   nextQuestion() {

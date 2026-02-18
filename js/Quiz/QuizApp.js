@@ -4,15 +4,13 @@ const optionsContainer = document.querySelector(".options-list");
 const questionTitleDOM = document.querySelector(".question-title");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
-
+const submitBtn = document.querySelector(".submit-btn");
 import QuizState from "./QuizStateClass.js";
 import questions from "./questionsArray.js";
 export const quiz = new QuizState(questions);
 function highlightSelected() {
   const options = document.querySelectorAll(".option");
   options.forEach((option, optionId) => {
-    console.log(optionId);
-    console.log(quiz.questions[quiz.currentIndex].selectedAnswer);
     if (optionId == quiz.questions[quiz.currentIndex].selectedAnswer) {
       option.classList.add("selected-option");
     } else option.classList.remove("selected-option");
@@ -59,28 +57,37 @@ function checkBtns() {
 }
 nextBtn.addEventListener("click", handleNext);
 prevBtn.addEventListener("click", handlePrev);
-
+submitBtn.addEventListener("click", handleSubmit);
 function handleNext() {
   quiz.nextQuestion();
   checkBtns();
   renderQuestions();
+  console.log(quiz);
   highlightSelected();
 }
+
 function handlePrev() {
   quiz.prevQuestion();
   checkBtns();
   renderQuestions();
   highlightSelected();
 }
+function handleSubmit() {
+  const totalScore = quiz.questions.reduce((acc, cur) => {
+    if (cur.correctAnswerIndex == cur.selectedAnswer) {
+      acc = acc + 1;
+    }
+    return acc;
+  }, 0);
+  quiz.totalScore = totalScore;
+  console.log(quiz);
+}
 function pickOption(questionId, optionIndex) {
   const currentQuestion = quiz.questions[questionId];
-  console.log(currentQuestion);
   currentQuestion.selectedAnswer = optionIndex;
 }
 optionsContainer.addEventListener("click", function (e) {
-  console.log(e.target.dataset.id);
   pickOption(quiz.currentIndex, e.target.dataset.id);
   highlightSelected();
-  console.log(e.target);
 });
 export default initQuiz;
