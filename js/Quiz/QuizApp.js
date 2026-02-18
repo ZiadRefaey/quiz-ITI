@@ -2,12 +2,15 @@ const totalQuestionsCount = document.querySelector(".total-questions-count");
 const currentIndexDOM = document.querySelector(".current-question-index");
 const optionsContainer = document.querySelector(".options-list");
 const questionTitleDOM = document.querySelector(".question-title");
+const markedList = document.querySelector(".marked-questions-list");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 const submitBtn = document.querySelector(".submit-btn");
+const markBtn = document.querySelector(".mark-btn");
 import QuizState from "./QuizStateClass.js";
 import questions from "./questionsArray.js";
 export const quiz = new QuizState(questions);
+let markedQuestionsList = [];
 function highlightSelected() {
   const options = document.querySelectorAll(".option");
   options.forEach((option, optionId) => {
@@ -58,11 +61,11 @@ function checkBtns() {
 nextBtn.addEventListener("click", handleNext);
 prevBtn.addEventListener("click", handlePrev);
 submitBtn.addEventListener("click", handleSubmit);
+markBtn.addEventListener("click", handleMark);
 function handleNext() {
   quiz.nextQuestion();
   checkBtns();
   renderQuestions();
-  console.log(quiz);
   highlightSelected();
 }
 
@@ -81,6 +84,25 @@ function handleSubmit() {
   }, 0);
   quiz.totalScore = totalScore;
   console.log(quiz);
+}
+function handleMark() {
+  quiz.questions[quiz.currentIndex].isMarked =
+    !quiz.questions[quiz.currentIndex].isMarked;
+  markedQuestionsList = quiz.questions.filter((question) => {
+    return question.isMarked;
+  });
+  renderMarkedQuestions();
+}
+function renderMarkedQuestions() {
+  markedList.replaceChildren();
+  markedQuestionsList.forEach((question) => {
+    const markedQuestion = document.createElement("div");
+    markedQuestion.classList.add("marked-question-item");
+    markedQuestion.classList.add("aside-item");
+    markedQuestion.textContent = `#${question.id}`;
+    console.log(question);
+    markedList.replaceChildren(markedQuestion);
+  });
 }
 function pickOption(questionId, optionIndex) {
   const currentQuestion = quiz.questions[questionId];
