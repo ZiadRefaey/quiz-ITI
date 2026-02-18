@@ -9,7 +9,19 @@ const submitBtn = document.querySelector(".submit-btn");
 const markBtn = document.querySelector(".mark-btn");
 import QuizState from "./QuizStateClass.js";
 import questions from "./questionsArray.js";
-export const quiz = new QuizState(questions);
+const selectedCategory = localStorage.getItem("category");
+console.log(selectedCategory);
+let categorizedQuestions = [];
+if (selectedCategory === "mixed") {
+  categorizedQuestions = [...questions]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 10);
+} else {
+  categorizedQuestions = questions.filter(
+    (question) => question.category === selectedCategory,
+  );
+}
+export const quiz = new QuizState(categorizedQuestions);
 let markedQuestionsList = [];
 function highlightSelected() {
   const options = document.querySelectorAll(".option");

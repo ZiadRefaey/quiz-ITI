@@ -14,7 +14,6 @@ uniqueCategories.forEach((category) => {
   categoriesList.prepend(categoryDOM);
 });
 categoriesList.addEventListener("click", function (e) {
-  console.log(e.target.dataset.value);
   if (e.target.dataset.value) {
     localStorage.setItem("category", e.target.dataset.value);
     window.location.href = "quiz.html";
