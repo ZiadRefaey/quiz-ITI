@@ -1,4 +1,3 @@
-import questions from "./questionsArray.js";
 import Question from "./QuestionClass.js";
 export default class QuizState {
   constructor(questions) {

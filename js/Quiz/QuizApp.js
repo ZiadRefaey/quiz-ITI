@@ -17,11 +17,16 @@ if (selectedCategory === "mixed") {
     .sort(() => Math.random() - 0.5)
     .slice(0, 10);
 } else {
-  categorizedQuestions = questions.filter(
-    (question) => question.category === selectedCategory,
-  );
+  categorizedQuestions = questions.filter((question, index) => {
+    console.log(index);
+    return question.category === selectedCategory;
+  });
 }
-export const quiz = new QuizState(categorizedQuestions);
+const questionsWithUpdatedIds = categorizedQuestions.map((question, index) => {
+  question.id = index + 1;
+  return question;
+});
+export const quiz = new QuizState(questionsWithUpdatedIds);
 let markedQuestionsList = [];
 function highlightSelected() {
   const options = document.querySelectorAll(".option");
