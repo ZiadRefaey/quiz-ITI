@@ -9,7 +9,7 @@ submit.addEventListener("click",function(e){
         return el.email == emailInput.value
     })
     if(pass.value == users[find].pass){
-        console.log("done");
+        location.assign("categoryPicker.html");
     }
 
 })

@@ -1,3 +1,4 @@
+import { handleSubmit } from "./QuizApp.js";
 import Timer from "./TimerClass.js";
 const timerDOM = document.querySelector(".timer");
 export default function initTimer() {
@@ -8,7 +9,7 @@ export default function initTimer() {
     return [minutes, seconds];
   }
   function onFinish() {
-    alert("timer is up");
+    handleSubmit();
   }
   function onTick(remaining) {
     timerDOM.textContent = convertToMinutes(remaining).join(":");
