@@ -10,7 +10,6 @@ const markBtn = document.querySelector(".mark-btn");
 import QuizState from "./QuizStateClass.js";
 import questions from "./questionsArray.js";
 const selectedCategory = localStorage.getItem("category");
-console.log(selectedCategory);
 let categorizedQuestions = [];
 if (selectedCategory === "mixed") {
   categorizedQuestions = [...questions]
@@ -18,7 +17,6 @@ if (selectedCategory === "mixed") {
     .slice(0, 10);
 } else {
   categorizedQuestions = questions.filter((question, index) => {
-    console.log(index);
     return question.category === selectedCategory;
   });
 }
@@ -60,7 +58,6 @@ function initQuiz() {
 
 //responsible for handling how the previous and next buttons are disabled and enabled
 function checkBtns() {
-  console.log(quiz.currentIndex);
   if (quiz.currentIndex === quiz.questions.length - 1) {
     prevBtn.disabled = false;
     nextBtn.disabled = true;
@@ -74,7 +71,6 @@ function checkBtns() {
     quiz.currentIndex !== quiz.questions.length - 1 &&
     quiz.currentIndex !== 0
   ) {
-    console.log("here");
     nextBtn.disabled = false;
     prevBtn.disabled = false;
   }
@@ -122,8 +118,6 @@ function renderMarkedQuestions() {
     markedQuestion.classList.add("aside-item");
     markedQuestion.dataset.id = question.id;
     markedQuestion.textContent = `#${question.id}`;
-    console.log(question);
-    // markedQuestion.textContent = `#${question.}`
     if (index === 0) {
       markedList.replaceChildren(markedQuestion);
     } else {
@@ -137,7 +131,6 @@ markedList.addEventListener("click", function (e) {
   }
 });
 function navigateToQuestion(id) {
-  console.log(id);
   quiz.currentIndex = Number(id - 1);
   renderQuestions();
   checkBtns();
