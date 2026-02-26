@@ -9,6 +9,7 @@ const submitBtn = document.querySelector(".submit-btn");
 const markBtn = document.querySelector(".mark-btn");
 import QuizState from "./QuizStateClass.js";
 import questions from "./questionsArray.js";
+import * as lsit from "./QuestionsList.js";
 const selectedCategory = localStorage.getItem("category");
 let categorizedQuestions = [];
 if (selectedCategory === "mixed") {
@@ -25,12 +26,34 @@ const questionsWithUpdatedIds = categorizedQuestions.map((question, index) => {
   return question;
 });
 export const quiz = new QuizState(questionsWithUpdatedIds);
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const resetQuiz = urlParams.get("reset");
+if (resetQuiz) {
+  quiz.questions.sort(function (a) {
+    return Math.ceil(Math.random() * 10) - a.id;
+  });
+  let id = 0;
+  quiz.questions.forEach((q) => {
+    q.id = ++id;
+  });
+}
 let markedQuestionsList = [];
+let answeredCount = 0;
 function highlightSelected() {
   const options = document.querySelectorAll(".option");
   options.forEach((option, optionId) => {
     if (optionId == quiz.questions[quiz.currentIndex].selectedAnswer) {
       option.classList.add("selected-option");
+      answeredCount = 0;
+      quiz.questions.forEach((q) => {
+        if (q.selectedAnswer) answeredCount++;
+      });
+      console.log(answeredCount);
+
+      if (answeredCount == 10) {
+        submitBtn.disabled = false;
+      }
     } else option.classList.remove("selected-option");
   });
 }
@@ -71,6 +94,7 @@ function checkBtns() {
     quiz.currentIndex !== quiz.questions.length - 1 &&
     quiz.currentIndex !== 0
   ) {
+    // console.log("here");
     nextBtn.disabled = false;
     prevBtn.disabled = false;
   }
@@ -78,12 +102,16 @@ function checkBtns() {
 nextBtn.addEventListener("click", handleNext);
 prevBtn.addEventListener("click", handlePrev);
 submitBtn.addEventListener("click", handleSubmit);
-markBtn.addEventListener("click", handleMark);
+markBtn.addEventListener("click", () => {
+  handleMark(quiz.currentIndex);
+});
 function handleNext() {
   quiz.nextQuestion();
   checkBtns();
   renderQuestions();
   highlightSelected();
+  lsit.default();
+  console.log(quiz);
 }
 
 function handlePrev() {
@@ -91,8 +119,9 @@ function handlePrev() {
   checkBtns();
   renderQuestions();
   highlightSelected();
+  lsit.default();
 }
-function handleSubmit() {
+export function handleSubmit() {
   const totalScore = quiz.questions.reduce((acc, cur) => {
     if (cur.correctAnswerIndex == cur.selectedAnswer) {
       acc = acc + 1;
@@ -100,24 +129,32 @@ function handleSubmit() {
     return acc;
   }, 0);
   quiz.totalScore = totalScore;
-  console.log(quiz);
+  localStorage.totalScore = totalScore / quiz.questions.length;
+  location.assign("result.html");
+  // console.log(quiz);
 }
-function handleMark() {
-  quiz.questions[quiz.currentIndex].isMarked =
-    !quiz.questions[quiz.currentIndex].isMarked;
+function handleMark(index) {
+  console.log(quiz.currentIndex);
+  console.log(quiz.questions);
+
+  quiz.questions[index].isMarked = !quiz.questions[index].isMarked;
   markedQuestionsList = quiz.questions.filter((question) => {
     return question.isMarked;
   });
   renderMarkedQuestions();
 }
-
 function renderMarkedQuestions() {
+  if (markedQuestionsList.length == 0) {
+    markedList.replaceChildren();
+  }
   markedQuestionsList.forEach((question, index) => {
     const markedQuestion = document.createElement("div");
     markedQuestion.classList.add("marked-question-item");
     markedQuestion.classList.add("aside-item");
     markedQuestion.dataset.id = question.id;
-    markedQuestion.textContent = `#${question.id}`;
+    markedQuestion.innerHTML = `${question.id} <i style="color:red;" class="fa-solid fa-circle-xmark"></i>`;
+    // console.log(question);
+    // markedQuestion.textContent = `#${question.}`
     if (index === 0) {
       markedList.replaceChildren(markedQuestion);
     } else {
@@ -134,6 +171,7 @@ function navigateToQuestion(id) {
   quiz.currentIndex = Number(id - 1);
   renderQuestions();
   checkBtns();
+  lsit.default();
 }
 function pickOption(questionId, optionIndex) {
   const currentQuestion = quiz.questions[questionId];
@@ -143,4 +181,17 @@ optionsContainer.addEventListener("click", function (e) {
   pickOption(quiz.currentIndex, e.target.dataset.id);
   highlightSelected();
 });
+
+////////////////////handle list chose question button////////////
+
+lsit.questionsListDOM.addEventListener("click", function ({ target }) {
+  navigateToQuestion(target.textContent);
+});
+markedList.addEventListener("click", function ({ target }) {
+  if (target.classList.contains("fa-circle-xmark")) {
+    // quiz.currentIndex = ;
+    handleMark(target.parentElement.textContent - 1);
+  }
+});
+
 export default initQuiz;
