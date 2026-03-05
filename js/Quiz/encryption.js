@@ -6,7 +6,6 @@ export function encryptPass(pass) {
     // Convert the encryptedPass object to a string format (e.g., Base64) for storage/transmission
     return encryptedPass.toString();
 }
-
 // Function to decrypt data
 export function decryptPass(pass) {
     // Decrypt the ciphertext
