@@ -10,12 +10,14 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    gap:40px;
     background: radial-gradient(circle at top, #1f1c2c, #0f0c29);
-    overflow:hidden;
     position:relative;
+    padding:40px;
+    overflow: hidden;
 }
 
-/* Animated Glow Background */
+/* Glow Background */
 body::before{
     content:"";
     position:absolute;
@@ -25,6 +27,7 @@ body::before{
     top:-200px;
     left:-200px;
     animation: moveGlow 10s infinite alternate ease-in-out;
+    z-index:0;
 }
 
 @keyframes moveGlow{
@@ -32,51 +35,56 @@ body::before{
     to{ transform: translate(250px,200px);}
 }
 
-/* Result Card */
+/* ================= Result Card ================= */
+
 .result{
     position:relative;
     z-index:2;
     background:rgba(20,20,30,0.95);
-    padding:50px 60px;
+    padding:45px 50px;
     border-radius:25px;
     text-align:center;
     border:1px solid #6a5cff55;
     box-shadow:0 0 30px #6a5cff55;
+    width:350px;
     animation: fadeIn 0.7s ease-in-out;
 }
 
 @keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    from{ opacity:0; transform:translateY(30px);}
+    to{ opacity:1; transform:translateY(0);}
 }
 
 .result-head{
-    font-size:32px;
+    font-size:28px;
     margin-bottom:20px;
     color:#fff;
-    letter-spacing:1px;
 }
 
-/* Score */
 .result-score{
-    font-size:22px;
+    font-size:20px;
     margin-bottom:15px;
     color:#aaa;
 }
 
+/* لون الدرجة ديناميك */
 .result-score span{
-    font-size:48px;
+    font-size:42px;
     font-weight:bold;
-    color:#00ff99;
-    text-shadow:0 0 20px #00ff99aa;
     display:inline-block;
     animation: popScore 0.6s ease;
+}
+
+/* Success */
+.result-score span.success{
+    color:#00ff99;
+    text-shadow:0 0 20px #00ff99aa;
+}
+
+/* Fail */
+.result-score span.fail{
+    color:#ff4d4d;
+    text-shadow:0 0 20px #ff4d4daa;
 }
 
 @keyframes popScore{
@@ -85,15 +93,32 @@ body::before{
     100%{ transform:scale(1);}
 }
 
-/* Message */
 .result-msg{
-    font-size:20px;
-    font-weight:600;
-    color:#6a5cff;
-    text-shadow:0 0 10px #6a5cffaa;
-    margin-top:10px;
+    font-size:18px;
+    font-weight:bold;
+    margin:15px 0;
+    color: #fff;
+    
 }
 
+/* Buttons */
+.result a{
+    display:block;
+    margin-top:10px;
+    padding:10px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+    background:linear-gradient(135deg,#6a5cff,#3ba0ff);
+    color:#fff;
+    box-shadow:0 0 15px #6a5cff55;
+}
+
+.result a:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px #6a5cffaa;
+}
 /* Decorative Trophy Glow */
 .result::after{
     content:"🏆";
@@ -109,19 +134,121 @@ body::before{
     50%{ transform:translateY(-10px);}
     100%{ transform:translateY(0);}
 }
+/* ================= History Section ================= */
+/* ================= Premium Quiz History ================= */
+
+.userHistory{
+    position:relative;
+    z-index:2;
+    width:380px;
+    background:rgba(20,20,30,0.95);
+    padding:30px;
+    border-radius:25px;
+    border:1px solid #6a5cff55;
+    box-shadow:0 0 25px #6a5cff33;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* Header */
+.userHistory::before{
+    content:"📊 Quiz History";
+    font-size:20px;
+    font-weight:600;
+    color:#fff;
+    letter-spacing:1px;
+    margin-bottom:5px;
+}
+
+
+/* Each Attempt Card */
+.userHistory div{
+    background:linear-gradient(145deg,#141420,#0f0f18);
+    padding:18px;
+    border-radius:18px;
+    border:1px solid #333;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:0.3s ease;
+    position:relative;
+    overflow:hidden;
+}
+.userHistory div:first-child{
+    position: relative;
+    overflow: visible;
+}
+.userHistory div:first-child::after{
+    content: "🆕";
+    position: absolute;
+    top: -15px;
+    left: 5px;
+    font-size: 22px;
+}
+/* Glow Hover */
+.userHistory div:hover{
+    border-color:#6a5cff;
+    box-shadow:0 0 20px #6a5cff88;
+    transform:translateY(-3px);
+}
+
+/* Attempt Number */
+.userHistory div span:first-child{
+    font-weight:bold;
+    color:#6a5cff;
+    font-size:16px;
+}
+
+/* Category */
+.userHistory div span:nth-child(2){
+    color:#ccc;
+    font-size:14px;
+}
+
+/* Score Badge */
+.userHistory div span:last-child{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.5px;
+}
+
+/* Success Badge */
+.userHistory div span:last-child.success{
+    background:#00ff9920;
+    color:#00ff99;
+    border:1px solid #00ff99;
+}
+
+/* Fail Badge */
+.userHistory div span:last-child.fail{
+    background:#ff4d4d20;
+    color:#ff4d4d;
+    border:1px solid #ff4d4d;
+}
+
+/* Scroll if long history */
+.userHistory{
+    max-height:450px;
+    overflow-y:auto;
+}
+
+.userHistory::-webkit-scrollbar{
+    width:6px;
+}
+
+.userHistory::-webkit-scrollbar-thumb{
+    background:#6a5cff;
+    border-radius:10px;
+}
 
 /* Responsive */
-@media(max-width:600px){
-    .result{
-        width:90%;
-        padding:30px;
-    }
-
-    .result-head{
-        font-size:24px;
-    }
-
-    .result-score span{
-        font-size:36px;
+@media(max-width:900px){
+    body{
+        flex-direction:column;
     }
 }
+
+

@@ -1,3 +1,4 @@
+import { encryptPass } from "./Quiz/encryption.js";
 ///// reg /////
 let nameReg = /^^[a-zA-Z ]{3,20}$$/;
 let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$/;
@@ -84,11 +85,10 @@ submit.addEventListener("click",function(e){
             let user = {
                 userName : nameInput.value,
                 email : emailInput.value,
-                pass : pass.value
+                pass : encryptPass(pass.value)
             }
             users.push(user);
-            let jsonUsers = JSON.stringify(users);
-            localStorage.users = jsonUsers;
+            localStorage.users = JSON.stringify(users);
             location.assign("login.html");
         }
     }else{
