@@ -1,3 +1,6 @@
+if(localStorage.category == "" || !localStorage.category){  
+  history.back();
+}
 const totalQuestionsCount = document.querySelector(".total-questions-count");
 const currentIndexDOM = document.querySelector(".current-question-index");
 const optionsContainer = document.querySelector(".options-list");
@@ -17,7 +20,6 @@ let usersHistorey = localStorage.getItem("usersHistorey")
   : [];
 
 console.log(currentUser);
-
 // console.log(selectedCategory);
 let categorizedQuestions = [];
 if (selectedCategory === "mixed") {
@@ -159,9 +161,12 @@ export function handleSubmit() {
   }
 
   localStorage.setItem("usersHistorey", JSON.stringify(usersHistorey));
+  // history.replaceState
   location.replace("result.html");
+
   console.log(quiz);
 }
+
 function handleMark(index) {
   console.log(quiz.currentIndex);
   console.log(quiz.questions);

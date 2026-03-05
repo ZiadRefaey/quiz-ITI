@@ -45,5 +45,15 @@ currentUser.perviseQuizs.forEach((e , i) => {
     }
     historyDiv.appendChild(quizDiv);
 });
+window.history.pushState(null, null, window.location.href);
+window.onpopstate = function (event) {
+  window.history.pushState(null, null, window.location.href);
+};
 
+// window.addEventListener("popstate",function(e){
+//     e.preventDefault();
+//     console.log("done");
+    
+//     this.location.assign("result.html")
+// })
 

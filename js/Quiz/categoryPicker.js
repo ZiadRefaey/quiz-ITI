@@ -1,10 +1,12 @@
+if(localStorage.currentUser === "" || !localStorage.currentUser ){  
+  location.assign("login.html")
+}
 import questions from "./questionsArray.js";
 const categoriesList = document.querySelector(".categories-options");
 const currentUser = JSON.parse(localStorage.currentUser);
 const userNameSpan = document.querySelector(".category-container h1 span");
 const historyDiv = document.querySelector(".userHistory");
 userNameSpan.textContent = currentUser.userName;
-
 function getUniqueCategories(questions) {
   const arr = questions.map((question) => question.category);
   const uniqueArr = new Set(arr);
