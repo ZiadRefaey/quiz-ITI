@@ -9,37 +9,28 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/quiz.css" />
     <title>Document</title>
   </head>
   <body class="quiz-container">
-    <header  class="quiz-header">
+    <header class="quiz-header">
       <p>
         <span class="current-question"
           >Question <span class="current-question-index">3</span></span
         >
         of <span class="total-questions-count">20</span>
       </p>
-      <span class="timer"> 12:40 </span>
+      <span class="timer"></span>
+
+      <progress
+        aria-label="remaining-time-progress-bar"
+        class="progress-bar timer-progress"
+      ></progress>
     </header>
     <aside class="questions-list-container aside-list-container">
       <p class="questions-list-title aside-title">Questions</p>
-      <div class="questions-list aside-list">
-        <!-- <div class="question-item aside-item">1</div>
-        <div class="question-item aside-item">
-          2
-          <span class="marked-question"
-            ><i class="fa-regular fa-circle-dot"></i
-          ></span>
-        </div>
-        <div class="question-item aside-item">
-          3
-          <span class="marked-question"
-            ><i class="fa-regular fa-circle-dot"></i
-          ></span>
-        </div> -->
-      </div>
+      <div class="questions-list aside-list"></div>
     </aside>
     <main class="questions-container">
       <h1 class="question-title"></h1>

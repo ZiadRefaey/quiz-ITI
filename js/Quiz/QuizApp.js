@@ -28,7 +28,6 @@ if (selectedCategory === "mixed") {
     .slice(0, 10);
 } else {
   categorizedQuestions = questions.filter((question, index) => {
-    // console.log(index);
     return question.category === selectedCategory;
   });
 }
@@ -165,6 +164,9 @@ export function handleSubmit() {
   location.replace("result.html");
 
   console.log(quiz);
+  localStorage.totalScore = totalScore / quiz.questions.length;
+  location.assign("result.html");
+  // console.log(quiz);
 }
 
 function handleMark(index) {
