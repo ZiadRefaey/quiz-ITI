@@ -10,7 +10,9 @@ export default function renderQuestionsList() {
     if(question.selectedAnswer != null){
       questionItem.classList.add("answered");
     }
-    
+    if(question.isMarked){
+      questionItem.classList.add("marked");
+    }
     questionsListDOM.appendChild(questionItem);
   });
   questionsListDOM.children[quiz.currentIndex].classList.add("target");    

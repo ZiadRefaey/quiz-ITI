@@ -237,6 +237,18 @@ progress {
   box-shadow: 0 0 15px #6a5cff22;
   overflow-y: auto;
 }
+.aside-item.marked{
+  position: relative;
+}
+.aside-item.marked::after {
+  position: absolute;
+  content: "⛳️";
+  top: -15px;
+  left: -15px;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid gold; */
+}
 .marked-list-container i:hover {
   transform: scale(1.2);
 }
@@ -247,7 +259,6 @@ progress {
 .marked-list-container {
   grid-area: marked;
 }
-
 .aside-title {
   margin-bottom: 15px;
   font-weight: 600;

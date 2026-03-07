@@ -92,6 +92,12 @@ h2{
 }
 .container{
     display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
 }
 
 /* Categories Grid */
@@ -100,8 +106,9 @@ h2{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
-    width: 70%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 500px;
+
 }
 
 /* Each Category Card */
@@ -155,8 +162,7 @@ h2{
     position:relative;
     z-index:2;
     width:100%;
-    max-width:650px;
-    /* margin-top:50px; */
+    max-width:450px;
     background:rgba(15,15,25,0.95);
     padding:30px;
     border-radius:28px;
@@ -167,6 +173,7 @@ h2{
     gap:18px;
     max-height:320px;
     overflow-y:auto;
+
 }
 
 /* Header */
@@ -252,7 +259,7 @@ h2{
 }
 
 /* Responsive */
-@media(max-width: 768px){
+/* @media(max-width: 768px){
     .categories-options{
         width: 90%;
     }
@@ -261,4 +268,56 @@ h2{
         font-size: 24px;
         margin-bottom: 25px;
     }
+} */
+ @media(max-width: 900px) and (min-width : 501px){
+    body.category-container {
+        overflow-y: auto ;
+        overflow-x: hidden;
+    }
+    .container{
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
+
+    /* .categories-options{
+        max-width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    } */
+
+    .userHistory{
+        max-width: 100%;
+    }
+
+}
+
+@media(max-width: 500px){
+    body.category-container{
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+        .container{
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
+    h1{
+        font-size:22px;
+    }
+    
+    h2{
+        font-size:20px;
+    }
+
+    .category-option{
+        padding:18px;
+        font-size:14px;
+    }
+
+    .userHistory div{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+    }
+
 }

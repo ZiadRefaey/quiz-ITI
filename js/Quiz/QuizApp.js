@@ -1,5 +1,5 @@
-if(localStorage.category == "" || !localStorage.category){  
-  history.back();
+if(localStorage.category === "" || !localStorage.category || localStorage.currentUser === "" || !localStorage.currentUser){  
+  location.assign("login.html");
 }
 const totalQuestionsCount = document.querySelector(".total-questions-count");
 const currentIndexDOM = document.querySelector(".current-question-index");
@@ -16,16 +16,25 @@ import * as lsit from "./QuestionsList.js";
 const selectedCategory = localStorage.getItem("category");
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 let usersHistorey = localStorage.getItem("usersHistorey")
-  ? JSON.parse(localStorage.usersHistorey)
-  : [];
+? JSON.parse(localStorage.usersHistorey)
+: [];
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const resetQuiz = urlParams.get("reset");
 console.log(currentUser);
 // console.log(selectedCategory);
 let categorizedQuestions = [];
 if (selectedCategory === "mixed") {
-  categorizedQuestions = [...questions]
+  if(resetQuiz){
+    categorizedQuestions =  JSON.parse(localStorage.getItem("mixedCategorey"));
+  }else{
+
+    categorizedQuestions = [...questions]
     .sort(() => Math.random() - 0.5)
     .slice(0, 10);
+    localStorage.setItem("mixedCategorey",JSON.stringify(categorizedQuestions))
+  }
 } else {
   categorizedQuestions = questions.filter((question, index) => {
     return question.category === selectedCategory;
@@ -36,9 +45,8 @@ const questionsWithUpdatedIds = categorizedQuestions.map((question, index) => {
   return question;
 });
 export const quiz = new QuizState(questionsWithUpdatedIds);
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const resetQuiz = urlParams.get("reset");
+console.log(categorizedQuestions , questionsWithUpdatedIds , quiz);
+
 if (resetQuiz) {
   quiz.questions.sort(function (a) {
     return Math.ceil(Math.random() * 10) - a.id;
@@ -172,7 +180,7 @@ export function handleSubmit() {
 function handleMark(index) {
   console.log(quiz.currentIndex);
   console.log(quiz.questions);
-
+  document.querySelectorAll(".aside-item")[index].classList.toggle("marked");
   quiz.questions[index].isMarked = !quiz.questions[index].isMarked;
   markedQuestionsList = quiz.questions.filter((question) => {
     return question.isMarked;
@@ -225,9 +233,32 @@ lsit.questionsListDOM.addEventListener("click", function ({ target }) {
 });
 markedList.addEventListener("click", function ({ target }) {
   if (target.classList.contains("fa-circle-xmark")) {
-    // quiz.currentIndex = ;
     handleMark(target.parentElement.textContent - 1);
   }
 });
+///////////////////////////////////////
+
+
+history.pushState(null, null, location.href);
+
+window.onpopstate = function () {
+  history.go(1);
+};
+
+document.addEventListener("keydown", function (e) {
+
+  if (e.key === "F5") {
+    e.preventDefault();
+  }
+
+  if (e.ctrlKey && e.key === "r") {
+    e.preventDefault();
+  }
+
+});
+// if (performance.getEntriesByType("navigation")[0].type === "reload") {
+//   alert("لا يمكن عمل Refresh أثناء الامتحان");
+//   window.location.href = "categoryPicker.html";
+// }
 
 export default initQuiz;

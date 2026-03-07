@@ -4,6 +4,11 @@
   box-sizing: border-box;
   font-family: "Segoe UI", sans-serif;
 }
+@property --progress {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 
 body{
     min-height:100vh;
@@ -27,32 +32,12 @@ body::before{
     top:-200px;
     left:-200px;
     animation: moveGlow 10s infinite alternate ease-in-out;
+    pointer-events: none;
     z-index:0;}
-body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at top, #1f1c2c, #0f0c29);
-  overflow: hidden;
-  position: relative;
-}
 
 /* ========================= */
 /* Animated Glow Background */
 /* ========================= */
-
-body::before {
-  content: "";
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, #6a5cff40, transparent 70%);
-  top: -200px;
-  left: -200px;
-  animation: moveGlow 10s infinite alternate ease-in-out;
-  pointer-events: none;
-}
 
 @keyframes moveGlow {
   from {
@@ -104,13 +89,13 @@ body::before {
 }
 
 /* Success */
-.result-score span.success{
+.success{
     color:#00ff99;
     text-shadow:0 0 20px #00ff99aa;
 }
 
 /* Fail */
-.result-score span.fail{
+.fail{
     color:#ff4d4d;
     text-shadow:0 0 20px #ff4d4daa;
 }
@@ -124,9 +109,7 @@ body::before {
 .result-msg{
     font-size:18px;
     font-weight:bold;
-    margin:15px 0;
-    color: #fff;
-    
+    margin:15px 0;    
 }
 
 /* Buttons */
@@ -201,7 +184,7 @@ body::before {
 .result-msg {
   font-size: clamp(16px, 3vw, 20px);
   font-weight: 600;
-  color: #6a5cff;
+  /* color: #6a5cff; */
   text-shadow: 0 0 10px #6a5cffaa;
   margin-top: clamp(8px, 2vw, 12px);
 }
@@ -214,7 +197,7 @@ body::before {
   display: inline-block;
   margin-top: clamp(10px, 3vw, 18px);
   font-size: clamp(14px, 2.5vw, 16px);
-  color: #9f8cff;
+  /* color: #9f8cff; */
   text-decoration: none;
   transition: 0.2s;
 }
@@ -332,12 +315,7 @@ body::before {
     border-radius:10px;
 }
 
-/* Responsive */
-@media(max-width:900px){
-    body{
-        flex-direction:column;
-    }
-}
+
 
 
 /* ========================= */
@@ -377,6 +355,7 @@ body::before {
   place-items: center;
   position: relative;
   margin: 10px auto;
+  animation: circleProgress 5s alternate forwards ease-in-out;
 }
 
 /* inner circle */
@@ -399,8 +378,8 @@ body::before {
 .progress-circle.green {
   background: conic-gradient(
     #00ff9c 0deg,
-    #00ff9c 270deg,
-    #1c1a3a 270deg,
+    #00ff9c var(--progress),
+    #1c1a3a var(--progress),
     #1c1a3a 360deg
   );
 
@@ -414,12 +393,29 @@ body::before {
 .progress-circle.red {
   background: conic-gradient(
     #ff4d6d 0deg,
-    #ff4d6d 126deg,
-    #1c1a3a 126deg,
+    #ff4d6d var(--progress),
+    #1c1a3a var(--progress),
     #1c1a3a 360deg
   );
 
   box-shadow:
     0 0 clamp(12px, 3vw, 25px) #ff4d6d,
     inset 0 0 25px rgba(0, 0, 0, 0.6);
+}
+/* @keyframes circleProgress {
+  from{
+    --progress : 0deg;
+  }
+
+to{
+    --progress : ;
+  }
+}  */
+/* Responsive */
+@media(max-width:900px){
+    body{
+        flex-direction:column;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 }
