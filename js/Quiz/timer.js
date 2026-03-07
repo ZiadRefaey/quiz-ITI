@@ -3,7 +3,7 @@ import Timer from "./TimerClass.js";
 const timerDOM = document.querySelector(".timer");
 const progressTimerDOM = document.querySelector(".timer-progress");
 export default function initTimer() {
-  const timer = new Timer(120, onTick, onFinish);
+  const timer = new Timer(1200, onTick, onFinish);
   progressTimerDOM.max = timer.duration;
   console.log(progressTimerDOM.max);
   timerDOM.textContent = convertToMinutes(120).join(":");

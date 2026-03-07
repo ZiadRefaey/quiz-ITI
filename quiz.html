@@ -9,11 +9,29 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/navbar.css" />
     <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/quiz.css" />
     <title>Document</title>
   </head>
   <body class="quiz-container">
+    <nav class="navbar">
+      <div class="logo">LOGO</div>
+
+      <div class="avatar hidden" id="avatarSection">
+        <button id="avatarBtn" class="avatar-btn">A</button>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+          <p class="username">USER NAME</p>
+          <button class="signout">Sign Out</button>
+        </div>
+      </div>
+
+      <div class="btns-nav hidden" id="authBtns">
+        <a href="index.html" class="btn-signup">Sign Up</a>
+        <a href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
     <header class="quiz-header">
       <p>
         <span class="current-question"
@@ -47,5 +65,6 @@
       <button disabled class="submit-btn">Submit</button>
     </footer>
     <script type="module" src="/js/Quiz/main.js"></script>
+    <script src="./js/navbar.js"></script>
   </body>
 </html>

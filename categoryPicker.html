@@ -8,23 +8,40 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/categories.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
     <!-- <link rel="stylesheet" href="css/history.css"> -->
     <title>Document</title>
   </head>
   <body class="category-container">
+    <nav class="navbar">
+      <div class="logo">LOGO</div>
+
+      <div class="avatar hidden" id="avatarSection">
+        <button id="avatarBtn" class="avatar-btn">A</button>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+          <p class="username">USER NAME</p>
+          <button class="signout">Sign Out</button>
+        </div>
+      </div>
+
+      <div class="btns-nav hidden" id="authBtns">
+        <a href="index.html" class="btn-signup">Sign Up</a>
+        <a href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
     <h1>Welcome <span></span></h1>
     <h2>Pick a category to be tested on</h2>
     <div class="container">
       <div>
-
         <div class="categories-options">
           <div class="category-option" data-value="mixed">Mixed Questions</div>
         </div>
       </div>
       <div class="userHistory"></div>
     </div>
-      
 
+    <script src="js/navbar.js"></script>
     <script type="module" src="./js/Quiz/categoryPicker.js"></script>
   </body>
 </html>

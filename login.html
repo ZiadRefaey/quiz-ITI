@@ -1,34 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="sign-body">
-    <form action="">
-        <h2>Log in</h2>
-        <h4>to start the quiz</h4>
-        <label for="email">E-mail</label>
-        <input type="text" placeholder="enter your e-mail" name="email" id="email">
-                <span id="emailErr"></span>
-        <label for="pass">password :</label>
-        <input type="password" placeholder="enter a password" name="pass" id="pass">
-                <span id="passErr"></span>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+  </head>
+  <body class="sign-body">
+    <nav class="navbar">
+      <div class="logo">LOGO</div>
 
-        <div class="checkboxDiv">
-            <span>
-                <input type="checkbox" name="remember" id="remember">
-                <label for="remember">Remember me</label>
-            </span>
-            <a href="#">Forget password ?</a>
+      <div class="avatar hidden" id="avatarSection">
+        <button id="avatarBtn" class="avatar-btn">A</button>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+          <p class="username">USER NAME</p>
+          <button class="signout">Sign Out</button>
         </div>
-        <button>Log in</button>
-        <p>Don't have an account ? <a href="index.html">Sing up</a></p>
+      </div>
+
+      <div class="btns-nav hidden" id="authBtns">
+        <a href="index.html" class="btn-signup">Sign Up</a>
+        <a href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
+    <form action="">
+      <h2>Log in</h2>
+      <h4>to start the quiz</h4>
+      <label for="email">E-mail</label>
+      <input
+        type="text"
+        placeholder="enter your e-mail"
+        name="email"
+        id="email"
+      />
+      <span id="emailErr"></span>
+      <label for="pass">password :</label>
+      <input
+        type="password"
+        placeholder="enter a password"
+        name="pass"
+        id="pass"
+      />
+      <span id="passErr"></span>
+
+      <div class="checkboxDiv">
+        <span>
+          <input type="checkbox" name="remember" id="remember" />
+          <label for="remember">Remember me</label>
+        </span>
+        <a href="#">Forget password ?</a>
+      </div>
+      <button>Log in</button>
+      <p>Don't have an account ? <a href="index.html">Sing up</a></p>
     </form>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"
+      integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o="
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="js/login.js"></script>
-</body>
+    <script src="js/navbar.js"></script>
+  </body>
 </html>

@@ -4,28 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/result.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/result.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">LOGO</div>
+
+      <div class="avatar hidden" id="avatarSection">
+        <button id="avatarBtn" class="avatar-btn">A</button>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+          <p class="username">USER NAME</p>
+          <button class="signout">Sign Out</button>
+        </div>
+      </div>
+
+      <div class="btns-nav hidden" id="authBtns">
+        <a href="index.html" class="btn-signup">Sign Up</a>
+        <a href="login.html" class="btn-signin">Sign In</a>
+      </div>
+    </nav>
     <div class="result">
       <p class="result-head">Quiz finshed</p>
       <div class="progress-circle">
         <span class="inner">0%</span>
       </div>
       <!-- <p class="result-msg">good job</p>
+          <a href="quiz.html?reset=true">Rest Quiz</a>
+          
+          <p class="result-head">Quiz finshed</p> -->
+      <!-- <p class="result-score">your score : <span>000</span></p> -->
+      <p class="result-msg">good job</p>
       <a href="quiz.html?reset=true">Rest Quiz</a>
-
-        <p class="result-head">Quiz finshed</p> -->
-        <!-- <p class="result-score">your score : <span>000</span></p> -->
-        <p class="result-msg">good job</p>
-        <a href="quiz.html?reset=true">Rest Quiz</a>
-        <a href="categoryPicker.html">chose category</a>
+      <a href="categoryPicker.html">chose category</a>
     </div>
-    <div class="userHistory">
-        
-
-    </div>
+    <div class="userHistory"></div>
 
     <script type="module" src="/js/Quiz/result.js"></script>
+    <script src="js/navbar.js"></script>
   </body>
 </html>
