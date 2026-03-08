@@ -29,7 +29,6 @@ categoriesList.addEventListener("click", function (e) {
     location.replace("quiz.html");
   }
 });
-console.log(currentUser.perviseQuizs.length);
 
 if (currentUser.perviseQuizs.length == 0) {
   const quizDiv = document.createElement("div");

@@ -13,8 +13,6 @@ let pass = document.getElementById("pass");
 let emailErr = document.getElementById("emailErr");
 let passErr = document.getElementById("passErr");
 
-console.log(usersHistorey);
-
 submit.addEventListener("click", function (e) {
   e.preventDefault();
   let find = users.findIndex((el) => {
@@ -30,8 +28,6 @@ submit.addEventListener("click", function (e) {
         return u.userEmail == users[find].email;
       });
       if (findUser != -1) {
-        console.log(usersHistorey[findUser]);
-
         currentUser = {
           userName: usersHistorey[findUser].userName,
           userEmail: usersHistorey[findUser].email,

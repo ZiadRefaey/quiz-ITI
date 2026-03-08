@@ -29,7 +29,6 @@ if (totalScore >= 0.5) {
   resultScore.classList.add("fail");
   resultMsg.classList.add("fail");
 }
-// let progress = 0;
 let score = 0;
 if (totalScore * 10 > 0) {
   let interval = setInterval(() => {
@@ -74,16 +73,6 @@ currentUser.perviseQuizs.forEach((e, i) => {
   historyDiv.appendChild(quizDiv);
 });
 window.history.pushState(null, null, window.location.href);
-
-// function preventBack() {
-//   window.history.pushState(null, null, window.location.href);
-// }
-
-// preventBack();
-
-// window.addEventListener("popstate", function () {
-//   preventBack();
-// });
 
 window.onpopstate = function () {
   history.go(1);

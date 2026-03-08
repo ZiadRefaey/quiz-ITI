@@ -74,7 +74,6 @@ function highlightSelected() {
       quiz.questions.forEach((q) => {
         if (q.selectedAnswer) answeredCount++;
       });
-      console.log(answeredCount);
 
       if (answeredCount == 10) {
         submitBtn.disabled = false;
@@ -121,7 +120,6 @@ function checkBtns() {
     quiz.currentIndex !== quiz.questions.length - 1 &&
     quiz.currentIndex !== 0
   ) {
-    // console.log("here");
     nextBtn.disabled = false;
     prevBtn.disabled = false;
   }
@@ -138,7 +136,6 @@ function handleNext() {
   renderQuestions();
   highlightSelected();
   lsit.default();
-  console.log(quiz);
 }
 
 function handlePrev() {
@@ -177,17 +174,14 @@ export function handleSubmit() {
   }
 
   localStorage.setItem("usersHistorey", JSON.stringify(usersHistorey));
-  // history.replaceState
+
   localStorage.setItem("quizFinished", "true");
   location.replace("result.html");
 
   localStorage.totalScore = totalScore / quiz.questions.length;
-  // console.log(quiz);
 }
 
 function handleMark(index) {
-  console.log(quiz.currentIndex);
-  console.log(quiz.questions);
   document.querySelectorAll(".aside-item")[index].classList.toggle("marked");
   quiz.questions[index].isMarked = !quiz.questions[index].isMarked;
   markedQuestionsList = quiz.questions.filter((question) => {
@@ -205,8 +199,7 @@ function renderMarkedQuestions() {
     markedQuestion.classList.add("aside-item");
     markedQuestion.dataset.id = question.id;
     markedQuestion.innerHTML = `${question.id} <i style="color:red;" class="fa-solid fa-circle-xmark"></i>`;
-    // console.log(question);
-    // markedQuestion.textContent = `#${question.}`
+
     if (index === 0) {
       markedList.replaceChildren(markedQuestion);
     } else {
@@ -261,9 +254,5 @@ document.addEventListener("keydown", function (e) {
     e.preventDefault();
   }
 });
-// if (performance.getEntriesByType("navigation")[0].type === "reload") {
-//   alert("لا يمكن عمل Refresh أثناء الامتحان");
-//   window.location.href = "categoryPicker.html";
-// }
 
 export default initQuiz;

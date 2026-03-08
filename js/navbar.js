@@ -6,7 +6,6 @@ const authBtns = document.getElementById("authBtns");
 const signOut = document.querySelector(".signout");
 const userNameDOM = document.querySelector(".username");
 
-/* dummy auth condition */
 const currentUser = localStorage.getItem("currentUser");
 if (currentUser) {
   const currentUserName = JSON.parse(currentUser)?.userName;
@@ -32,14 +31,11 @@ if (isLoggedIn) {
   authBtns.classList.remove("hidden");
 }
 signOut.addEventListener("click", handleSignOut);
-/* dropdown toggle */
 
 avatarBtn?.addEventListener("click", (e) => {
   e.stopPropagation();
   dropdown.classList.toggle("show");
 });
-
-/* close when clicking outside */
 
 document.addEventListener("click", () => {
   dropdown.classList.remove("show");

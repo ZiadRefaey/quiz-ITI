@@ -53,7 +53,7 @@ body::before {
 
 .result {
   position: relative;
-  z-index: 2;
+  z-index: 200;
   background: rgba(20, 20, 30, 0.95);
   padding: 45px 50px;
   border-radius: 25px;
