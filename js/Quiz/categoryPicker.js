@@ -1,5 +1,8 @@
 if (localStorage.currentUser === "" || !localStorage.currentUser) {
-  location.assign("login.html");
+  location.replace("login.html");
+}
+if (localStorage.getItem("quizFinished")) {
+  window.location.href = "result.html";
 }
 import questions from "./questionsArray.js";
 const categoriesList = document.querySelector(".categories-options");
@@ -23,7 +26,7 @@ uniqueCategories.forEach((category) => {
 categoriesList.addEventListener("click", function (e) {
   if (e.target.dataset.value) {
     localStorage.setItem("category", e.target.dataset.value);
-    window.location.href = "quiz.html";
+    location.replace("quiz.html");
   }
 });
 console.log(currentUser.perviseQuizs.length);

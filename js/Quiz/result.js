@@ -6,13 +6,15 @@ if (
   localStorage.totalScore == "" ||
   !localStorage.totalScore
 ) {
-  location.assign("login.html");
+  location.replace("login.html");
 }
 const resultScore = document.querySelector(".inner");
 const resultMsg = document.querySelector(".result-msg");
 const historyDiv = document.querySelector(".userHistory");
 const circle = document.querySelector(".progress-circle");
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const restQuizByCategory = document.getElementById("restQuizByCategory");
+const restQuiz = document.getElementById("restQuiz");
 let usersHistorey = JSON.parse(localStorage.usersHistorey);
 let totalScore = currentUser.perviseQuizs[0].score;
 // let
@@ -73,16 +75,22 @@ currentUser.perviseQuizs.forEach((e, i) => {
 });
 window.history.pushState(null, null, window.location.href);
 
-function preventBack() {
-  window.history.pushState(null, null, window.location.href);
-}
+// function preventBack() {
+//   window.history.pushState(null, null, window.location.href);
+// }
 
-preventBack();
+// preventBack();
 
-window.addEventListener("popstate", function () {
-  preventBack();
-});
+// window.addEventListener("popstate", function () {
+//   preventBack();
+// });
 
 window.onpopstate = function () {
   history.go(1);
 };
+restQuiz.addEventListener("click", () => {
+  localStorage.quizFinished = "";
+});
+restQuizByCategory.addEventListener("click", () => {
+  localStorage.quizFinished = "";
+});
