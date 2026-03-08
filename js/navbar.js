@@ -22,6 +22,7 @@ function handleSignOut() {
   localStorage.setItem("currentUser", "");
   localStorage.setItem("category", "");
   localStorage.setItem("totalScore", "");
+  localStorage.setItem("quizFinished", "");
   isLoggedIn = false;
   window.location.href = "login.html";
 }
