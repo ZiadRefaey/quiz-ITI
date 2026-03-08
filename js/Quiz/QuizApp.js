@@ -1,5 +1,8 @@
 if(localStorage.category === "" || !localStorage.category || localStorage.currentUser === "" || !localStorage.currentUser){  
-  location.assign("login.html");
+  location.replace("login.html");
+}
+if (localStorage.getItem("quizFinished")) {
+  window.location.href = "result.html";
 }
 const totalQuestionsCount = document.querySelector(".total-questions-count");
 const currentIndexDOM = document.querySelector(".current-question-index");
@@ -76,8 +79,11 @@ function highlightSelected() {
   });
 }
 function renderQuestions() {
+  
   totalQuestionsCount.textContent = quiz.questions.length;
-  currentIndexDOM.textContent = quiz.currentIndex + 1;
+  if(!(quiz.currentIndex > 10)){
+    currentIndexDOM.textContent = quiz.currentIndex + 1;
+  }
   const currentQuestion = quiz.questions[quiz.currentIndex];
   const questionTitle = currentQuestion.title;
   const questionOptions = currentQuestion.options;
@@ -169,11 +175,13 @@ export function handleSubmit() {
 
   localStorage.setItem("usersHistorey", JSON.stringify(usersHistorey));
   // history.replaceState
-  location.replace("result.html");
-
+  
   console.log(quiz);
   localStorage.totalScore = totalScore / quiz.questions.length;
-  location.assign("result.html");
+  localStorage.setItem("quizFinished", "true");
+  location.replace("result.html");
+
+  // location.assign("result.html");
   // console.log(quiz);
 }
 
@@ -218,6 +226,8 @@ function navigateToQuestion(id) {
   lsit.default();
 }
 function pickOption(questionId, optionIndex) {
+  console.log("done");
+  
   const currentQuestion = quiz.questions[questionId];
   currentQuestion.selectedAnswer = optionIndex;
 }

@@ -1,3 +1,6 @@
+if (localStorage.getItem("quizFinished")) {
+  window.location.href = "result.html";
+}
 import { encryptPass } from "./Quiz/encryption.js";
 ///// reg /////
 let nameReg = /^^[a-zA-Z ]{3,20}$$/;
@@ -89,7 +92,7 @@ submit.addEventListener("click",function(e){
             }
             users.push(user);
             localStorage.users = JSON.stringify(users);
-            location.assign("login.html");
+            location.replace("login.html");
         }
     }else{
         alert("e-mail exicte");

@@ -1,3 +1,6 @@
+if (localStorage.getItem("quizFinished")) {
+  window.location.href = "result.html";
+}
 import { decryptPass } from "./Quiz/encryption.js";
 let users = localStorage.getItem("users") ? JSON.parse(localStorage.users) : [];
 let usersHistorey = localStorage.getItem("usersHistorey") ? JSON.parse(localStorage.usersHistorey) : [];
@@ -39,7 +42,7 @@ submit.addEventListener("click",function(e){
                 }
             }        
             localStorage.setItem("currentUser",JSON.stringify(currentUser));
-            location.assign("categoryPicker.html");
+            location.replace("categoryPicker.html");
         }else{
             emailErr.innerHTML = " ";
             passErr.classList.add("danger");            
