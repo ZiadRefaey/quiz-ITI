@@ -1,4 +1,9 @@
-if(localStorage.category === "" || !localStorage.category || localStorage.currentUser === "" || !localStorage.currentUser){  
+if (
+  localStorage.category === "" ||
+  !localStorage.category ||
+  localStorage.currentUser === "" ||
+  !localStorage.currentUser
+) {
   location.assign("login.html");
 }
 const totalQuestionsCount = document.querySelector(".total-questions-count");
@@ -16,24 +21,24 @@ import * as lsit from "./QuestionsList.js";
 const selectedCategory = localStorage.getItem("category");
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 let usersHistorey = localStorage.getItem("usersHistorey")
-? JSON.parse(localStorage.usersHistorey)
-: [];
+  ? JSON.parse(localStorage.usersHistorey)
+  : [];
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const resetQuiz = urlParams.get("reset");
-console.log(currentUser);
-// console.log(selectedCategory);
 let categorizedQuestions = [];
 if (selectedCategory === "mixed") {
-  if(resetQuiz){
-    categorizedQuestions =  JSON.parse(localStorage.getItem("mixedCategorey"));
-  }else{
-
+  if (resetQuiz) {
+    categorizedQuestions = JSON.parse(localStorage.getItem("mixedCategorey"));
+  } else {
     categorizedQuestions = [...questions]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 10);
-    localStorage.setItem("mixedCategorey",JSON.stringify(categorizedQuestions))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 10);
+    localStorage.setItem(
+      "mixedCategorey",
+      JSON.stringify(categorizedQuestions),
+    );
   }
 } else {
   categorizedQuestions = questions.filter((question, index) => {
@@ -45,7 +50,6 @@ const questionsWithUpdatedIds = categorizedQuestions.map((question, index) => {
   return question;
 });
 export const quiz = new QuizState(questionsWithUpdatedIds);
-console.log(categorizedQuestions , questionsWithUpdatedIds , quiz);
 
 if (resetQuiz) {
   quiz.questions.sort(function (a) {
@@ -238,7 +242,6 @@ markedList.addEventListener("click", function ({ target }) {
 });
 ///////////////////////////////////////
 
-
 history.pushState(null, null, location.href);
 
 window.onpopstate = function () {
@@ -246,7 +249,6 @@ window.onpopstate = function () {
 };
 
 document.addEventListener("keydown", function (e) {
-
   if (e.key === "F5") {
     e.preventDefault();
   }
@@ -254,7 +256,6 @@ document.addEventListener("keydown", function (e) {
   if (e.ctrlKey && e.key === "r") {
     e.preventDefault();
   }
-
 });
 // if (performance.getEntriesByType("navigation")[0].type === "reload") {
 //   alert("لا يمكن عمل Refresh أثناء الامتحان");

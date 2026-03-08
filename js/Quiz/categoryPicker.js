@@ -1,5 +1,5 @@
-if(localStorage.currentUser === "" || !localStorage.currentUser ){  
-  location.assign("login.html")
+if (localStorage.currentUser === "" || !localStorage.currentUser) {
+  location.assign("login.html");
 }
 import questions from "./questionsArray.js";
 const categoriesList = document.querySelector(".categories-options");
@@ -28,26 +28,26 @@ categoriesList.addEventListener("click", function (e) {
 });
 console.log(currentUser.perviseQuizs.length);
 
-if(currentUser.perviseQuizs.length == 0){
-      const quizDiv = document.createElement("div");
-    quizDiv.innerHTML = `
+if (currentUser.perviseQuizs.length == 0) {
+  const quizDiv = document.createElement("div");
+  quizDiv.innerHTML = `
         <span>there is no previous Quiz</span>
-    `
-    historyDiv.appendChild(quizDiv);
+    `;
+  historyDiv.appendChild(quizDiv);
 }
-currentUser.perviseQuizs.forEach((e , i) => {    
-    const quizDiv = document.createElement("div");
-    quizDiv.innerHTML = `
-        <span>no ${i+1}</span>
-        <span>category : ${e.category}</span>
-        <span>Score : ${e.score * 100} %</span>
-    `
-    const scoreText = quizDiv.querySelector("span:last-child");
+currentUser.perviseQuizs.forEach((e, i) => {
+  const quizDiv = document.createElement("div");
+  quizDiv.innerHTML = `
+        <span>No ${i + 1}</span>
+        <span>Category: ${e.category}</span>
+        <span>Score: ${e.score * 100} %</span>
+    `;
+  const scoreText = quizDiv.querySelector("span:last-child");
 
-    if(e.score >= 0.5){
-        scoreText.classList.add("success");
-    }else{
-        scoreText.classList.add("fail");
-    }
-    historyDiv.appendChild(quizDiv);
+  if (e.score >= 0.5) {
+    scoreText.classList.add("success");
+  } else {
+    scoreText.classList.add("fail");
+  }
+  historyDiv.appendChild(quizDiv);
 });

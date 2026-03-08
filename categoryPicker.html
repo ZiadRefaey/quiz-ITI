@@ -7,13 +7,14 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/all.css" />
     <link rel="stylesheet" href="css/categories.css" />
     <link rel="stylesheet" href="css/navbar.css" />
     <title>Document</title>
   </head>
   <body class="category-container">
     <nav class="navbar">
-      <div class="logo">LOGO</div>
+      <div class="logo"><img src="assets/logo.png" alt="logo icon" /></div>
 
       <div class="avatar hidden" id="avatarSection">
         <button id="avatarBtn" class="avatar-btn">A</button>
@@ -37,7 +38,11 @@
           <div class="category-option" data-value="mixed">Mixed Questions</div>
         </div>
       </div>
-      <div class="userHistory"></div>
+      <div class="userHistory">
+        <p class="user-history-header">
+          <i class="fa-solid fa-clock-rotate-left"></i> YOUR QUIZ HISTORY
+        </p>
+      </div>
     </div>
 
     <script src="js/navbar.js"></script>
