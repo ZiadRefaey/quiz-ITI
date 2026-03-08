@@ -66,26 +66,20 @@ progress {
   transition: all 1s linear;
 }
 
-@keyframes dangerPulse {
-  0% {
-    background-color: #ef4444; /* red */
-  }
-
-  50% {
-    background-color: #9333ea; /* purple */
-  }
-
-  100% {
-    background-color: #ef4444;
-  }
-}
 .timer {
   font-size: 20px;
   font-weight: bold;
   color: #00ff99;
   text-shadow: 0 0 10px #00ff99aa;
 }
-
+.warning {
+  color: #ffc107;
+  text-shadow: 0 0 10px #ffc107;
+}
+.danger {
+  color: #ff4d4d;
+  text-shadow: 0 0 10px #ff4d4d;
+}
 /* Aside Panels */
 .aside-list-container,
 .marked-list-container {

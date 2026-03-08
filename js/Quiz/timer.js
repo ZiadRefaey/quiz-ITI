@@ -3,10 +3,11 @@ import Timer from "./TimerClass.js";
 const timerDOM = document.querySelector(".timer");
 const progressTimerDOM = document.querySelector(".timer-progress");
 export default function initTimer() {
-  const timer = new Timer(120, onTick, onFinish);
+  const totalTime = 120;
+  const timer = new Timer(totalTime, onTick, onFinish);
   progressTimerDOM.max = timer.duration;
   console.log(progressTimerDOM.max);
-  timerDOM.textContent = convertToMinutes(120).join(":");
+  timerDOM.textContent = convertToMinutes(totalTime).join(":");
   function convertToMinutes(timer) {
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
@@ -18,6 +19,17 @@ export default function initTimer() {
   function onTick(remaining) {
     timerDOM.textContent = convertToMinutes(remaining).join(":");
     const currentTime = timer.duration - timer.remaining;
+    if (
+      remaining <= timer.duration * 0.25 &&
+      remaining > timer.duration * 0.1
+    ) {
+      timerDOM.classList.add("warning");
+    } else if (remaining <= timer.duration * 0.1) {
+      timerDOM.classList.add("danger");
+    } else {
+      timerDOM.classList.remove("warning");
+      timerDOM.classList.remove("danger");
+    }
     progressTimerDOM.value = currentTime;
   }
   timer.start();
