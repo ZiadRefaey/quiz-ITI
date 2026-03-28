@@ -19,9 +19,12 @@ submit.addEventListener("click", function (e) {
     return el.email == emailInput.value;
   });
   if (find == -1) {
-    emailErr.classList.add("danger");
-    emailErr.innerHTML =
-      "<i class='fa-regular fa-circle-xmark'></i> invalid Email";
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "invaild E-mail or password ....",
+        footer: "Don't have an E-mail ?<a href='index.html'>Sign Up</a>",
+      });
   } else {
     if (pass.value == decryptPass(users[find].pass)) {
       let findUser = usersHistorey.findIndex((u) => {
@@ -41,12 +44,31 @@ submit.addEventListener("click", function (e) {
         };
       }
       localStorage.setItem("currentUser", JSON.stringify(currentUser));
-      location.replace("categoryPicker.html");
+      Swal.mixin({
+        toast: true,
+        position: "center",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      }).fire({
+        icon: "success",
+        title: "Signed in successfully"
+      });
+      setTimeout(() => {
+
+        location.replace("categoryPicker.html");
+      }, 3000)
     } else {
-      emailErr.innerHTML = " ";
-      passErr.classList.add("danger");
-      passErr.innerHTML =
-        "<i class='fa-regular fa-circle-xmark'></i> Wrong password";
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "invaild E-mail or password ....",
+        footer: "Don't have an E-mail ?<a href='index.html'>Sign Up</a>"
+      });
     }
   }
 });

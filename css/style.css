@@ -176,7 +176,85 @@ form p a {
 form p a:hover {
   text-shadow: 0 0 8px #6a5cff;
 }
+/* Popup Container */
+.swal2-popup,
+.swal2-toast.swal2-show{
+  border-radius: 25px;
+  background: rgba(20, 20, 30, 0.95);
+  border: 1px solid #6a5cff66;
+  box-shadow: 0 0 30px #6a5cff55;
+  color: #fff;
+}
 
+/* Title */
+.swal2-title{
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Content Text */
+.swal2-html-container{
+  color: #ccc;
+  font-size: 15px;
+}
+
+/* Buttons */
+.swal2-confirm{
+  background: linear-gradient(135deg,#6a5cff,#3ba0ff) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 15px #6a5cff55;
+  transition: 0.3s;
+}
+
+.swal2-confirm:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px #6a5cffaa;
+}
+
+/* Cancel Button */
+.swal2-cancel{
+  background: transparent !important;
+  border: 1px solid #6a5cff !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+
+.swal2-cancel:hover{
+  background: #6a5cff22 !important;
+}
+
+/* Links */
+.swal2-popup a{
+  color: #00f5ff;
+  text-decoration: none;
+}
+
+.swal2-popup a:hover{
+  text-shadow: 0 0 10px #00f5ff;
+}
+
+/* Icon Colors */
+.swal2-icon.swal2-success{
+  border-color: #00ff99 !important;
+  color: #00ff99 !important;
+}
+
+.swal2-icon.swal2-error{
+  border-color: #ff4d4d !important;
+  color: #ff4d4d !important;
+}
+
+/* Progress bar (لو Toast) */
+.swal2-timer-progress-bar{
+  background: linear-gradient(90deg,#6a5cff,#00f5ff);
+}
+.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right] {
+    top: -0.3em !important;}
+    .swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left] {
+    top: -0.85em !important;
+    left: -0.3em !important;}
 /* Responsive */
 @media (max-width: 480px) {
   form {

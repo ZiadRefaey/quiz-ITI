@@ -115,9 +115,32 @@ submit.addEventListener("click", function (e) {
       };
       users.push(user);
       localStorage.users = JSON.stringify(users);
-      location.replace("login.html");
+      Swal.mixin({
+        toast: true,
+        position: "center",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      }).fire({
+        icon: "success",
+        title: "Signed up successfully"
+      });
+      setTimeout(() => {
+
+        // location.replace("categoryPicker.html");
+        location.replace("login.html");
+      }, 3000)
     }
   } else {
-    alert("e-mail exicte");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "This email is already registered. Try logging in instead or use another e-mail",
+      footer: "Don't have an E-mail ?<a href='index.html'>Sign Up</a>"
+    });
   }
 });

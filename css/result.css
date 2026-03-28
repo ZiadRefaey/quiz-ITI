@@ -159,7 +159,7 @@ body::before {
 
 .result {
   position: relative;
-  z-index: 2;
+  z-index: 1001;
   background: rgba(20, 20, 30, 0.95);
   padding: clamp(24px, 5vw, 50px);
   border-radius: 25px;
